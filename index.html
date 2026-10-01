@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จักรวาลและระบบสุริยะ - ศูนย์การเรียนรู้ออนไลน์</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Prompt', sans-serif; }
+        .space-bg {
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #090a0f; }
+        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
+    </style>
+</head>
+<body class="space-bg text-white min-h-screen flex flex-col selection:bg-blue-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchPage('home')">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-400 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                        <i class="fa-solid fa-earth-americas text-white text-lg"></i>
+                    </div>
+                    <span class="font-bold text-lg tracking-wider bg-gradient-to-r from-blue-400 to-indigo-200 bg-clip-text text-transparent">AstroKnowledge</span>
+                </div>
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-1">
+                    <button onclick="switchPage('home')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-blue-400 bg-slate-800/60" data-target="home">หน้าแรก</button>
+                    <button onclick="switchPage('solarsystem')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800/40" data-target="solarsystem">ระบบสุริยะ</button>
+                    <button onclick="switchPage('phenomenon')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800/40" data-target="phenomenon">ปรากฏการณ์</button>
+                    <button onclick="switchPage('references')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800/40" data-target="references">แหล่งอ้างอิง</button>
+                </nav>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white p-2 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="mobile-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-1 bg-slate-950/95 border-b border-slate-800">
+            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-blue-400 bg-slate-800/60">หน้าแรก</button>
+            <button onclick="switchPage('solarsystem'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800/40">ระบบสุริยะ</button>
+            <button onclick="switchPage('phenomenon'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800/40">ปรากฏการณ์</button>
+            <button onclick="switchPage('references'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800/40">แหล่งอ้างอิง</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container (Multi-page SPA) -->
+    <main class="flex-grow">
+
+        <!-- PAGE: HOME -->
+        <section id="page-home" class="page-content py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[75vh]">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-rocket"></i> <span>สำรวจพรมแดนแห่งความรู้</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+                        ไขความลับ <span class="bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">จักรวาลอันกว้างใหญ่</span>
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed font-light">
+                        เรียนรู้โครงสร้างของระบบสุริยะ ดวงดาว เคหะวัตถุ และปรากฏการณ์ทางดาราศาสตร์ที่น่าทึ่ง รวบรวมข้อมูลเชิงลึกอย่างเป็นระบบ เข้าใจง่าย พร้อมภาพประกอบและแหล่งอ้างอิงที่เชื่อถือได้
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <button onclick="switchPage('solarsystem')" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium shadow-lg shadow-blue-600/30 transition-all transform hover:-translate-y-0.5 flex items-center space-x-2">
+                            <span>เริ่มสำรวจระบบสุริยะ</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <button onclick="switchPage('phenomenon')" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium border border-slate-700 transition-all">
+                            ดูปรากฏการณ์ดาว
+                        </button>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-blue-600/20 to-purple-600/20 flex items-center justify-center p-4 border border-slate-700/50 shadow-2xl animate-pulse">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop" alt="Universe" class="w-full h-full object-cover rounded-full shadow-inner opacity-90">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE: SOLAR SYSTEM -->
+        <section id="page-solarsystem" class="page-content hidden py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">ระบบสุริยะของเรา (Solar System)</h2>
+                <p class="text-slate-400">ประกอบด้วยดวงอาทิตย์และวัตถุที่โคจรรอบดวงอาทิตย์เนื่องจากแรงโน้มถ่วง แบ่งออกเป็นดาวเคราะห์ 8 ดวงหลัก</p>
+            </div>
+            <!-- Interactive Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Planet Card 1 -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-xl hover:border-blue-500/50 transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?q=80&w=600&auto=format&fit=crop" alt="Mercury" class="w-full h-48 object-cover">
+                    <div class="p-6 space-y-3">
+                        <div class="text-xs text-blue-400 font-semibold uppercase">ดวงที่ 1 จากดวงอาทิตย์</div>
+                        <h3 class="text-xl font-bold">ดาวพุธ (Mercury)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">ดาวเคราะห์ที่อยู่ใกล้ดวงอาทิตย์ที่สุดและมีขนาดเล็กที่สุด พื้นผิวเต็มไปด้วยหลุมอุกกาบาต ไม่มีชั้นบรรยากาศห่อหนาแน่น</p>
+                    </div>
+                </div>
+                <!-- Planet Card 2 -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-xl hover:border-blue-500/50 transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1614313913007-2b4ae8ce32d6?q=80&w=600&auto=format&fit=crop" alt="Venus" class="w-full h-48 object-cover">
+                    <div class="p-6 space-y-3">
+                        <div class="text-xs text-blue-400 font-semibold uppercase">ดวงที่ 2 จากดวงอาทิตย์</div>
+                        <h3 class="text-xl font-bold">ดาวศุกร์ (Venus)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">สว่างที่สุดในท้องฟ้าเวลากลางคืน มีสภาวะเรือนกระจกที่รุนแรง ทำให้อุณหภูมิพื้นผิวสูงที่สุดในระบบสุริยะ</p>
+                    </div>
+                </div>
+                <!-- Planet Card 3 -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-xl hover:border-blue-500/50 transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?q=80&w=600&auto=format&fit=crop" alt="Earth" class="w-full h-48 object-cover">
+                    <div class="p-6 space-y-3">
+                        <div class="text-xs text-blue-400 font-semibold uppercase">ดวงที่ 3 จากดวงอาทิตย์</div>
+                        <h3 class="text-xl font-bold">โลก (Earth)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">ดาวเคราะห์ดวงเดียวในจักรวาลขณะนี้ที่พบร่องรอยของสิ่งมีชีวิต มีน้ำปกคลุมพื้นผิวถึง 71% และชั้นบรรยากาศเอื้ออำนวย</p>
+                    </div>
+                </div>
+                <!-- Planet Card 4 -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-xl hover:border-blue-500/50 transition-all duration-300">
+                    <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?q=80&w=600&auto=format&fit=crop" alt="Mars" class="w-full h-48 object-cover">
+                    <div class="p-6 space-y-3">
+                        <div class="text-xs text-blue-400 font-semibold uppercase">ดวงที่ 4 จากดวงอาทิตย์</div>
+                        <h3 class="text-xl font-bold">ดาวอังคาร (Mars)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">ฉายา "ดาวเคราะห์สีแดง" เนื่องจากพื้นผิวเต็มไปด้วยออกไซด์ของเหล็ก มีภูเขาไฟที่สูงที่สุดในระบบสุริยะคือโอลิมปัสส์</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE: PHENOMENON -->
+        <section id="page-phenomenon" class="page-content hidden py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">ปรากฏการณ์ทางดาราศาสตร์</h2>
+                <p class="text-slate-400">เหตุการณ์ธรรมชาติที่เกิดขึ้นจากการเคลื่อนที่สัมพันธ์กันระหว่างดวงอาทิตย์ โลก และดวงจันทร์</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl flex flex-col sm:flex-row gap-6 items-center">
+                    <img src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=400&auto=format&fit=crop" alt="Eclipse" class="w-full sm:w-48 h-36 object-cover rounded-xl">
+                    <div class="space-y-2">
+                        <h3 class="text-xl font-bold text-blue-400">สุริยุปราคา (Solar Eclipse)</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">เกิดขึ้นเมื่อดวงจันทร์โคจรมาอยู่ระหว่างโลกกับดวงอาทิตย์ ทำให้เงาของดวงจันทร์ทอดลงมายังพื้นผิวโลก เกิดเป็นสุริยุปราคาเต็มดวง บางส่วน หรือวงแหวน</p>
+                    </div>
+                </div>
+                <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl flex flex-col sm:flex-row gap-6 items-center">
+                    <img src="https://images.unsplash.com/photo-1532693322450-cb65c5144748?q=80&w=400&auto=format&fit=crop" alt="Meteor Shower" class="w-full sm:w-48 h-36 object-cover rounded-xl">
+                    <div class="space-y-2">
+                        <h3 class="text-xl font-bold text-blue-400">ฝนดาวตก (Meteor Shower)</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">เกิดขึ้นเมื่อโลกโคจรผ่านสายธารฝุ่นละอองและเศษซากที่ดาวหางหลงเหลือไว้ เศษหินเหล่านี้เผาไหม้ในชั้นบรรยากาศเกิดเป็นลำแสงวาบพุ่งตกลงมา</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE: REFERENCES -->
+        <section id="page-references" class="page-content hidden py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3">แหล่งอ้างอิงข้อมูล</h2>
+                <p class="text-slate-400">ข้อมูลทั้งหมดรวบรวมและอ้างอิงจากสถาบันดาราศาสตร์และหน่วยงานวิจัยระดับสากล</p>
+            </div>
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+                <div class="flex items-start space-x-4 pb-4 border-b border-slate-800">
+                    <div class="w-10 h-10 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg text-white">NASA Solar System Exploration</h4>
+                        <p class="text-slate-400 text-sm mt-1">เว็บไซต์ทางการขององค์การบริหารการบินและอวกาศแห่งชาติสหรัฐอเมริกา (NASA) ด้านระบบสุริยะ</p>
+                        <a href="https://solarsystem.nasa.gov" target="_blank" class="text-blue-400 text-xs hover:underline mt-2 inline-block">https://solarsystem.nasa.gov <i class="fa-solid fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg text-white">สถาบันวิจัยดาราศาสตร์แห่งชาติ (NARIT)</h4>
+                        <p class="text-slate-400 text-sm mt-1">แหล่งข้อมูลความรู้ทางดาราศาสตร์ภาษาไทยที่ได้รับการยอมรับและเผยแพร่ข้อมูลที่ถูกต้องแม่นยำ</p>
+                        <a href="https://www.narit.or.th" target="_blank" class="text-blue-400 text-xs hover:underline mt-2 inline-block">https://www.narit.or.th <i class="fa-solid fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-6 text-center text-slate-500 text-sm">
+        <p>&copy; 2026 AstroKnowledge. พัฒนาขึ้นสำหรับเว็บไซต์ให้ความรู้ดาราศาสตร์</p>
+    </footer>
+
+    <!-- JavaScript for Routing & Interaction -->
+    <script>
+        function switchPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.add('hidden'));
+
+            // Show target page
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+            }
+
+            // Update Desktop Nav styles
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                if (btn.getAttribute('data-target') === pageId) {
+                    btn.classList.add('text-blue-400', 'bg-slate-800/60');
+                    btn.classList.remove('text-slate-300');
+                } else {
+                    btn.classList.remove('text-blue-400', 'bg-slate-800/60');
+                    btn.classList.add('text-slate-300');
+                }
+            });
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+                      </html>
+                      
